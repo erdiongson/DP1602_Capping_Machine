@@ -3,6 +3,11 @@
  * Author: Kok Kenny
  *
  * Created on May 03, 2021, 3:56 PM
+ * 
+ * Created: 2024-08-15, 5:00PM
+ * Author: erdiongson
+ * Version 2.31 : i. Added a logic on the 'L0' warning so that the feeder will stop 
+ *                  when the Sensor_1 (Top Sensor) is triggered.
  */
 
 
@@ -99,6 +104,7 @@ extern void displayno(int digit, int number);
 extern void Display_Error(int enumber);
 extern void Display_Warning(int enumber);
 extern void Display_Version();
+extern void Display_8888();
 extern void i2c_Init(void);
 extern void i2c_Wait(void);
 extern void i2c_Start(void);
@@ -208,6 +214,8 @@ void main(void)
 	thousands = 0x30+(number/1000);
 //**********************************************************************************	
     Display_Version();
+    //DelayTime_1ms(500);
+    Display_8888();
     
 	InitTimer0();
  	InitTimer1();
@@ -486,6 +494,12 @@ void main(void)
                 {
                     warning = on;
                     warning_number = '0';
+                    //20240814: erdiongson - added as catch for the L0 error
+                    if(Sensor1)
+                    {
+                      Feeder_Stop();
+                    }
+                    //END                    
                 }while(!Sensor3);
                 
                 warning = off;
