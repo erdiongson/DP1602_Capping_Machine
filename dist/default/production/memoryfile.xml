@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <executable name="dist/default/production\DP1602_601_V2.3_Capper.X.production.hex">
+    <memory name="program">
+      <units>bytes</units>
+      <length>32760</length>
+      <used>9793</used>
+      <free>22967</free>
+    </memory>
+    <memory name="data">
+      <units>bytes</units>
+      <length>3904</length>
+      <used>269</used>
+      <free>3635</free>
+    </memory>
+  </executable>
+</project>
