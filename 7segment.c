@@ -168,7 +168,7 @@ void displayno(int digit, int number)
 			SEGG=off;	SEG_DOT = on;
 			break;
 
-		case 0x20:
+		case 0x20: //Blank
 		default:
 			SEGA=on;	SEGB=on;
 			SEGC=on;	SEGD=on;
@@ -262,7 +262,7 @@ void Display_Version()
 
                 switch (cdigit) {
                     case 1:
-                        displayno(cdigit, 0x20);
+                        displayno(cdigit, 0x31);
                         cdigit++;
                         break;
                     case 2:
@@ -279,6 +279,47 @@ void Display_Version()
                             displayno(cdigit, 0x50); //0x4c
                         else
                             displayno(cdigit, 0x20);
+                        cdigit++;
+                        break;
+                    default:
+                        cdigit = 1;
+                        break;
+                }
+            
+                DelayTime_1ms(delay);
+            }// end while
+        }
+        cdigit = 1;       
+    }
+}
+void Display_8888()
+{
+	unsigned int delay=5;
+    int cdigit=1;
+    int loop;
+    int repeat;
+    
+    for (repeat=0; repeat<50; repeat++) {
+        for(loop=0; loop<REFRESH_INTERVAL; loop++)
+        {
+            while(cdigit < 5){        
+
+                switch (cdigit) {
+                    case 1:
+                        displayno(cdigit, 0x38);
+                        cdigit++;
+                        break;
+                    case 2:
+                        displayno(cdigit, 0x38);//second digit
+                        cdigit++;
+                        break;
+                    case 3:
+                        //displayno(cdigit, (Version/10)+0x30);
+                        displayno(cdigit, 0x38);
+                        cdigit++;
+                        break;
+                    case 4:
+                        displayno(cdigit, 0x38);
                         cdigit++;
                         break;
                     default:
